@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StockProduct"
+        xmlns:collections="clr-namespace:System.Collections;assembly=System.Runtime"
         mc:Ignorable="d"
         Title="Stock" Height="450" Width="800" MaxWidth="800" MaxHeight="450" Background="#76ff03">
     <Grid ShowGridLines="False">
@@ -22,37 +23,15 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" Height="50" FontSize="30" FontFamily="Verdana" Foreground="Blue">Склад</TextBlock>
         <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" >
-            <ListBox Background="#76ff03" Name="ListBoxProduct" SelectionMode="Multiple">
-            <WrapPanel VerticalAlignment="Center" Name="WrapPanelAll">
-                <StackPanel x:Name="PanelProduct" Margin="5,0,0,0">
-                    <Label x:Name="LabelProduct" Content="Product" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,0,0" Foreground="Blue"></Label>
-                   <ListBoxItem Name="Item1">
-                       <TextBox x:Name="NameProduct" VerticalAlignment="Center" Height="25" Width="150" Margin="0,10,0,0"></TextBox>
-                   </ListBoxItem> 
-                </StackPanel>
-                <StackPanel x:Name="PanelPrice" Margin="5,0,0,0">
-                    <Label x:Name="LabelPrice" Content="Price" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,5,0,0" Foreground="Blue"></Label>
-                    <ListBoxItem Name="Item2">
-                        <TextBox x:Name="NamePrice" VerticalAlignment="Center" Height="25" Width="150" Margin="0,10,0,0"></TextBox>
-                    </ListBoxItem>
-                </StackPanel>
-                <StackPanel x:Name="PanelQuantity" Margin="5,0,0,0">
-                    <Label x:Name="LabelQuantity" Content="Quantity" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,5,0,0" Foreground="Blue"></Label>
-                    <ListBoxItem Name="Item3">
-                        <TextBox x:Name="NameQuantity" VerticalAlignment="Center" Height="25" Width="150" Margin="0,10,0,0"></TextBox>
-                    </ListBoxItem>
-                </StackPanel>
-            </WrapPanel>
-            </ListBox>
+            <DataGrid x:Name="ProductsGrid" AutoGenerateColumns="True" ItemsSource="{DynamicResource ResourceKey=Products}">
+                <DataGrid.Resources>
+                    <collections:ArrayList x:Key="Products">
+                        <local:Product ProductName="Name" Price="0" Quantity="0" />
+                    </collections:ArrayList>
+                </DataGrid.Resources>
+            </DataGrid>
         </ScrollViewer>
-        <Button Grid.Row="3" Grid.Column="1" Width="150" Height="45" Content="Добавить продукт" Click="AddForm" Background="#32cb00" Foreground="Blue">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="20"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <Button Grid.Row="3" Grid.Column="3" Width="150" Height="45" Content="Записать в базу" Background="#32cb00" Foreground="Blue" Click="AddToBase">
+        <Button Grid.Row="3" Grid.Column="2" Width="150" Height="45" Content="Записать в базу" Background="#32cb00" Foreground="Blue" Click="AddToBase">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="20"/>

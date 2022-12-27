@@ -27,80 +27,14 @@ namespace StockProduct
             InitializeComponent();
         }
 
-        private void AddForm(object sender, RoutedEventArgs e)
-        {
-            LabelProduct = new Label()
-            {
-                Content = "Product",
-                VerticalAlignment = VerticalAlignment.Top,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Foreground = Brushes.Blue,
-                Margin = new Thickness(0, 10, 0, 0),
-            };
 
-            NameProduct = new TextBox()
-            {
-                Name = "Product",
-                VerticalAlignment = VerticalAlignment.Center,
-                Height = 25,
-                Width = 150,
-                Margin = new Thickness(0, 10, 0, 0)
-            };
-
-            LabelPrice = new Label()
-            {
-                Content = "Price",
-                VerticalAlignment = VerticalAlignment.Top,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Foreground = Brushes.Blue,
-                Margin = new Thickness(0, 10, 0, 0),
-            };
-            
-            NamePrice = new TextBox()
-            {
-                Name = "Price",
-                VerticalAlignment = VerticalAlignment.Center,
-                Height = 25,
-                Width = 150,
-                Margin = new Thickness(0, 10, 0, 0)
-            };
-            
-            LabelQuantity = new Label()
-            {
-                Content = "Quantity",
-                VerticalAlignment = VerticalAlignment.Top,
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Foreground = Brushes.Blue,
-                Margin = new Thickness(0, 10, 0, 0),
-            };
-            
-            NameQuantity = new TextBox()
-            {
-                Name = "Quantity",
-                VerticalAlignment = VerticalAlignment.Center,
-                Height = 25,
-                Width = 150,
-                Margin = new Thickness(0, 10, 0, 0)
-            };
-            
-            PanelProduct.Children.Add(LabelProduct);
-            PanelProduct.Children.Add(NameProduct);
-            PanelPrice.Children.Add(LabelPrice);
-            PanelPrice.Children.Add(NamePrice);
-            PanelQuantity.Children.Add(LabelQuantity);
-            PanelQuantity.Children.Add(NameQuantity);
-        }
-
-        
         public void AddToBase(object sender, RoutedEventArgs e)
         {
-            AddProductStock addProductStock = new AddProductStock();
-            /*foreach (var item in ListBox.Items)
+            AddProductStock stock = new AddProductStock();
+            foreach (var test in ProductsGrid.ItemsSource)
             {
-                addProductStock.addProduct(NameProduct.Text, NamePrice.Text, NameQuantity.Text);
-            }*/
-            
-            
+                stock.addProduct((test as Product).ProductName, (test as Product).Price, (test as Product).Quantity);
+            }
         }
         
     }

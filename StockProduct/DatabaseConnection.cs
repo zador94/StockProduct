@@ -5,9 +5,9 @@ namespace StockProduct;
 public class DatabaseConnection
 {
     private static string host = "localhost"; // Имя хоста
-    private static string database = "andrey"; // Имя базы данных
+    private static string database = "test"; // Имя базы данных
     private static string user = "root"; // Имя пользователя
-    private static string password = "root"; // Пароль пользователя
+    private static string password = "123456"; // Пароль пользователя
     private static string Connect;
     private static MySqlConnection mySqlConnection;
 

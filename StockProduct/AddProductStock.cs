@@ -15,10 +15,10 @@ public class AddProductStock
         this.Connection = DatabaseConnection.getConnection();
     }
     
-    public void addProduct(string product, string price, string quantity)
+    public void addProduct(string product, float price, int quantity)
     {
         MySqlCommand command = Connection.CreateCommand();
-        command.CommandText = $"INSERT INTO product (`product`, `price`, `quantity`) VALUES ('{product}','{price}', '{quantity}')";
+        command.CommandText = $"INSERT INTO product (`product`, `price`, `quantity`) VALUES ('{product}', '{price}', '{quantity}')";
         
             Connection.Open();
             
